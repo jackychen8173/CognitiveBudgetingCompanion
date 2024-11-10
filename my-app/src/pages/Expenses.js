@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './Expenses.css'; 
+import { useNavigate } from 'react-router-dom';
 
 const Expenses = () => {
   const [formData, setFormData] = useState({
     category: '',
     cost: ''
   });
+  const [expenses, setExpenses] = useState([]);
 
-  const [expenses, setExpenses] = useState([]); // Store multiple expenses
+  // Retrieve expenses from localStorage when the component mounts
+  useEffect(() => {
+    const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    setExpenses(storedExpenses);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +26,13 @@ const Expenses = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.category && formData.cost) {
-      // Save the new expense to the array
-      setExpenses([...expenses, formData]);
+      // Save the expense to localStorage
+      const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+      storedExpenses.push(formData);
+      localStorage.setItem('expenses', JSON.stringify(storedExpenses));
 
-      // Optionally clear the form
+      // Update state and clear form
+      setExpenses(storedExpenses);
       setFormData({
         category: '',
         cost: ''
@@ -30,6 +40,12 @@ const Expenses = () => {
     } else {
       alert("Please fill out both fields.");
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/ExpensesReport'); 
   };
 
   return (
@@ -70,8 +86,35 @@ const Expenses = () => {
         <button type="submit">Save Expense</button>
       </form>
 
+      {/* Displaying the table */}
       <h2>Saved Expenses:</h2>
-      <pre>{JSON.stringify(expenses, null, 2)}</pre>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {expenses.length > 0 ? (
+              expenses.map((expense, index) => (
+                <tr key={index}>
+                  <td>{expense.category}</td>
+                  <td>${expense.cost}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="2" className="no-expenses">No expenses to display</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button className="view-button" onClick={handleNavigate}>View Monthly Report</button>
+      </div>
     </div>
   );
 };

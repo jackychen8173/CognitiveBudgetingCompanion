@@ -1,9 +1,21 @@
 import React from "react";
+import { useNavigate
+
+ } from "react-router-dom";
+
+ 
+
 
 const GetStarted = () => {
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate('/SignIn'); 
+    };
     return (
         <div>
-            <h1>Get Started</h1>
+            <h1>Welcome!</h1>
+            <button className="start-button" onClick={handleNavigate}>Get Started</button>
         </div>
     );
 };
