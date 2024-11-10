@@ -54,24 +54,19 @@ const Expenses = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            Category:
             <select
               name="category"
               value={formData.category}
               onChange={handleInputChange}
             >
-              <option value="">Select a Category</option>
+              <option value="">Select a Category:</option>
               <option value="Rent">Rent</option>
               <option value="Utilities">Utilities</option>
               <option value="Entertainment">Entertainment</option>
               <option value="Food">Food</option>
             </select>
           </label>
-        </div>
-
-        <div>
           <label>
-            Cost:
             <input
               type="number"
               name="cost"
@@ -79,11 +74,13 @@ const Expenses = () => {
               onChange={handleInputChange}
               min="0"
               step="0.01"
+              placeholder="Cost"
             />
           </label>
+          <button type="submit">Save Expense</button>
         </div>
 
-        <button type="submit">Save Expense</button>
+        
       </form>
 
       {/* Displaying the table */}
