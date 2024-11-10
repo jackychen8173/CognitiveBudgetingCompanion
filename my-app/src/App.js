@@ -5,10 +5,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <button> Sign In</button>
+        
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <p> You have spent $TODO money. </p>  
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -17,6 +20,8 @@ function App() {
         >
           Learn React
         </a>
+        <br></br>
+        <button> Settings </button>
       </header>
     </div>
   );
