@@ -57,8 +57,7 @@ const Expenses = () => {
             <select
               name="category"
               value={formData.category}
-              onChange={handleInputChange}
-            >
+              onChange={handleInputChange}>
               <option value="">Select a Category:</option>
               <option value="Rent">Rent</option>
               <option value="Utilities">Utilities</option>
@@ -84,6 +83,7 @@ const Expenses = () => {
       </form>
 
       {/* Displaying the table */}
+      <br></br>
       <h2>Saved Expenses:</h2>
       <div className="table-container">
         <table>
