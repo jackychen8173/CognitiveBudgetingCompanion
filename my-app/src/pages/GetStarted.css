@@ -1,0 +1,56 @@
+* {
+    background-color: #174031;
+}
+
+h1 {
+    position: absolute;
+    left: 6.6%;
+    right: 37.08%;
+    top: 30.96%;
+    bottom: 36.43%;
+    color: #F5F5F5;
+    display: flex;
+    font-family: 'Outfit';
+    font-style: normal;
+    align-items: center;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 66px;
+}
+
+
+
+/* position: absolute;
+left: 6.6%;
+right: 37.08%;
+top: 30.96%;
+bottom: 36.43%;
+
+font-family: 'Outfit';
+font-style: normal;
+
+/* or 82% */
+/* display: flex;
+align-items: center;
+letter-spacing: 0.05em;
+
+color: #F5F5F5; */ */
+
+/* Rectangle 1 */
+
+
+.start-button {
+    position: absolute;
+    left: 79.93%;
+    right: 69.86%;
+    top: 73.34%;
+    bottom: 17.77%;
+    background: #3DAC83;
+    border-radius: 50px;
+}
+
+/* Cognitive Budgeting Companion */
+
+
+
+

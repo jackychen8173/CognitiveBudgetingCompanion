@@ -1,9 +1,6 @@
 import React from "react";
-import { useNavigate
-
- } from "react-router-dom";
-
- 
+import { useNavigate} from "react-router-dom";
+import './GetStarted.css';
 
 
 const GetStarted = () => {
@@ -14,7 +11,7 @@ const GetStarted = () => {
     };
     return (
         <div>
-            <h1>Welcome!</h1>
+            <h1>Cognitive Budgeting Companion</h1>
             <button className="start-button" onClick={handleNavigate}>Get Started</button>
         </div>
     );
