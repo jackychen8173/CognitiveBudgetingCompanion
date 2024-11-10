@@ -6,7 +6,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-import Home from "./pages/Home";  // Make sure this is the correct import
+import GetStarted from "./pages/GetStarted";  
 import Expenses from "./pages/Expenses";
 import ExpensesReport from "./pages/ExpensesReport";
 import SignIn from "./pages/SignIn";
@@ -16,7 +16,7 @@ function App() {
         <Router>
             <Navbar />
             <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/" element={<GetStarted />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/expenses" element={<Expenses />} />
                 <Route path="/expensesReport" element={<ExpensesReport />} />
