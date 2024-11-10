@@ -1,26 +1,41 @@
-.App {
-  text-align: center;
+/* Reset some default browser styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
+/* Set the base font and background color for the app */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Main container for app content */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
 }
 
+/* General styles for headers */
+h1, h2, h3 {
+  color: #4d4dff;
+  margin-bottom: 16px;
+}
 
-.button {
-  background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Styling for links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Optional: Styling for active link */
+a.active {
+  font-weight: bold;
+  color: #4d4dff;
 }
