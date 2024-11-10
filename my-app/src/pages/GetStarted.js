@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate
 
  } from "react-router-dom";
+import "./GetStarted.css";
 
 const GetStarted = () => {
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ const GetStarted = () => {
         navigate('/SignIn'); 
     };
     return (
-        <div>
+        <div className="container">
             <h1>Cognitive Budgeting Companion</h1>
             <button className="start-button" onClick={handleNavigate}>Get Started</button>
         </div>
