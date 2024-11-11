@@ -2,26 +2,22 @@ import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: "process.env.REACT_APP_API_KEY", //To be inserted
-  dangerouslyAllowBrowser: true  // Make sure to use your actual OpenAI API key
+  apiKey: process.env.REACT_APP_API_KEY,  // Ensure API key is set correctly
+  dangerouslyAllowBrowser: true,
 });
 
 const ExpensesReport = () => {
   const [groupedExpenses, setGroupedExpenses] = useState({});
   const [advice, setAdvice] = useState("Fetching budgetary advice...");
 
-  // Helper function to group expenses by category
   const groupExpensesByCategory = (expenses) => {
     return expenses.reduce((acc, expense) => {
-      if (!acc[expense.category]) {
-        acc[expense.category] = [];
-      }
+      if (!acc[expense.category]) acc[expense.category] = [];
       acc[expense.category].push(expense);
       return acc;
     }, {});
   };
 
-  // Format grouped expenses into a string for API request
   const formatExpensesForAPI = (expenses) => {
     return Object.entries(expenses).map(([category, items]) => {
       const total = items.reduce((sum, item) => sum + item.cost, 0);
@@ -29,10 +25,9 @@ const ExpensesReport = () => {
     }).join(", ");
   };
 
-  // Fetch budgetary advice from OpenAI
   const fetchBudgetaryAdvice = async () => {
     const formattedExpenses = formatExpensesForAPI(groupedExpenses);
-    console.log(formattedExpenses);
+    console.log("Formatted expenses for API:", formattedExpenses);
 
     try {
       const completion = await openai.chat.completions.create({
@@ -49,16 +44,17 @@ const ExpensesReport = () => {
     }
   };
 
-  // Retrieve and group expenses from localStorage, and fetch advice
   useEffect(() => {
-    const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
-    const grouped = groupExpensesByCategory(storedExpenses);
-    setGroupedExpenses(grouped);
+    try {
+      const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+      const grouped = groupExpensesByCategory(storedExpenses);
+      setGroupedExpenses(grouped);
 
-    console.log("Grouped Expenses:", grouped);
-
-    if (storedExpenses.length > 0) {
-      fetchBudgetaryAdvice();  // Fetch advice after loading expenses
+      if (storedExpenses.length > 0) {
+        fetchBudgetaryAdvice();
+      }
+    } catch (error) {
+      console.error("Error loading expenses:", error);
     }
   }, []);
 
