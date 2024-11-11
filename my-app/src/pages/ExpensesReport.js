@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: "process.env.REACT_APP_API_KEY",
+  apiKey: "process.env.REACT_APP_API_KEY", //To be inserted
   dangerouslyAllowBrowser: true  // Make sure to use your actual OpenAI API key
 });
 
