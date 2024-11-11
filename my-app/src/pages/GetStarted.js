@@ -13,6 +13,7 @@ const GetStarted = () => {
     return (
         <div className="container">
             <h1>Cognitive Budgeting Companion</h1>
+            <img src="calculator.png" alt="calculator"/>
             <button className="start-button" onClick={handleNavigate}>Get Started</button>
         </div>
     );
