@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
+  apiKey: 'YOUR_OPENAI_API_KEY'  // Make sure to use your actual OpenAI API key
 });
 
 const ExpensesReport = () => {
@@ -19,7 +20,7 @@ const ExpensesReport = () => {
     }, {});
   };
 
-  // Function to convert grouped expenses to a format suitable for OpenAI
+  // Format grouped expenses into a string for API request
   const formatExpensesForAPI = (expenses) => {
     return Object.entries(expenses).map(([category, items]) => {
       const total = items.reduce((sum, item) => sum + item.cost, 0);
@@ -27,7 +28,7 @@ const ExpensesReport = () => {
     }).join(", ");
   };
 
-  // Function to fetch budgetary advice from OpenAI
+  // Fetch budgetary advice from OpenAI
   const fetchBudgetaryAdvice = async () => {
     const formattedExpenses = formatExpensesForAPI(groupedExpenses);
 
@@ -39,31 +40,22 @@ const ExpensesReport = () => {
           { role: "user", content: `Provide budgeting advice for the following expenses: ${formattedExpenses}.` },
         ],
       });
-      setAdvice(completion.choices[0].message.content); // Set the advice content in state
+      setAdvice(completion.choices[0].message.content);
     } catch (error) {
       console.error("Error fetching budgetary advice:", error);
       setAdvice("Error fetching budgetary advice.");
     }
   };
-const ExpensesReport = () => {
-  const [groupedExpenses, setGroupedExpenses] = useState({});
 
-  // Helper function to group expenses by category
-  const groupExpensesByCategory = (expenses) => {
-    return expenses.reduce((acc, expense) => {
-      if (!acc[expense.category]) {
-        acc[expense.category] = [];
-      }
-      acc[expense.category].push(expense);
-      return acc;
-    }, {});
-  };
-
-  // Retrieve expenses from localStorage when the component mounts
+  // Retrieve and group expenses from localStorage, and fetch advice
   useEffect(() => {
     const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
     const grouped = groupExpensesByCategory(storedExpenses);
     setGroupedExpenses(grouped);
+
+    if (storedExpenses.length > 0) {
+      fetchBudgetaryAdvice();  // Fetch advice after loading expenses
+    }
   }, []);
 
   return (
@@ -94,6 +86,8 @@ const ExpensesReport = () => {
               </table>
             </div>
           ))}
+          <h2>Budgetary Advice</h2>
+          <p>{advice}</p>
         </div>
       )}
     </div>
