@@ -50,10 +50,10 @@ const Expenses = () => {
 
   return (
     <div>
-      <h1>Expense Form</h1>
+      <h1 className='h1'>Welcome!</h1>
       <br />
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='input'>
           <label>
             <select
               name="category"
@@ -85,7 +85,7 @@ const Expenses = () => {
 
       {/* Displaying the table */}
       <br></br>
-      <h2>Saved Expenses:</h2>
+      <h2 className='h2'>Saved Expenses:</h2>
       <div className="table-container">
         <table>
           <thead>

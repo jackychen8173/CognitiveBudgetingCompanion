@@ -8,30 +8,36 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    text-align: left;
+    text-align: center;
+    background-color: #3DAC83;
+    
   }
   
   th, td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 5px solid #ddd;
     text-align: left;
+    background-color: #3DAC83;
+  }
+
+  .h2 {
+    color: white;
+    text-align: center;
+  }
+
+  .h1 {
+    color: white;
+    text-align: center;
   }
   
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tr:hover {
-    background-color: #e0e0e0;
-  }
   
   .no-expenses {
     text-align: center;
     font-style: italic;
     color: #888;
+  }
+
+  .input {
+    align-items: center;
   }
   
