@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
+import './ExpensesReport.css'; 
 
 const openai = new OpenAI({
   apiKey: "process.env.REACT_APP_API_KEY", //To be inserted
@@ -91,7 +92,7 @@ const ExpensesReport = () => {
             </div>
           ))}
           <h2>Budgetary Advice</h2>
-          <p>{advice}</p>
+          <p className="advice">{advice}</p>
         </div>
       )}
     </div>
