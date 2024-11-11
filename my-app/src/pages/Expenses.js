@@ -51,6 +51,7 @@ const Expenses = () => {
   return (
     <div>
       <h1>Expense Form</h1>
+      <br />
       <form onSubmit={handleSubmit}>
         <div>
           <label>
