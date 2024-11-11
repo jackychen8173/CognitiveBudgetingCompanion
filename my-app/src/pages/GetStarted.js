@@ -3,6 +3,7 @@ import { useNavigate
 
  } from "react-router-dom";
 import "./GetStarted.css";
+import img from '../assets/calculator.png';
 
 const GetStarted = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const GetStarted = () => {
     return (
         <div className="container">
             <h1>Cognitive Budgeting Companion</h1>
-            <img src="calculator.png" alt="calculator"/>
+            <img className="img" src={img} alt="calculator" />
             <button className="start-button" onClick={handleNavigate}>Get Started</button>
         </div>
     );
