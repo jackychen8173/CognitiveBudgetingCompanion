@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: 'YOUR_OPENAI_API_KEY'  // Make sure to use your actual OpenAI API key
+  apiKey: "process.env.REACT_APP_API_KEY", //To be inserted
+  dangerouslyAllowBrowser: true  // Make sure to use your actual OpenAI API key
 });
 
 const ExpensesReport = () => {
@@ -31,6 +32,7 @@ const ExpensesReport = () => {
   // Fetch budgetary advice from OpenAI
   const fetchBudgetaryAdvice = async () => {
     const formattedExpenses = formatExpensesForAPI(groupedExpenses);
+    console.log(formattedExpenses);
 
     try {
       const completion = await openai.chat.completions.create({
@@ -52,6 +54,8 @@ const ExpensesReport = () => {
     const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
     const grouped = groupExpensesByCategory(storedExpenses);
     setGroupedExpenses(grouped);
+
+    console.log("Grouped Expenses:", grouped);
 
     if (storedExpenses.length > 0) {
       fetchBudgetaryAdvice();  // Fetch advice after loading expenses
